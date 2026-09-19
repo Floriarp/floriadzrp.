@@ -79,8 +79,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
+        /* Logo on left - fixed width */
         .logo {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
@@ -92,10 +94,23 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex: 0 0 auto;
         }
         .logo i { font-size: 2rem; -webkit-text-fill-color: var(--primary); }
 
-        .nav-links { display: flex; gap: 40px; list-style: none; }
+        /* Nav links in center */
+        .nav-links { 
+            display: flex; 
+            gap: 40px; 
+            list-style: none; 
+            flex: 1;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        
         .nav-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
@@ -119,13 +134,12 @@
 
         .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-        /* Language Switcher Styles - Fixed on right */
+        /* Language Switcher on right */
         .lang-switcher {
             display: flex;
             gap: 10px;
             align-items: center;
-            margin-left: 30px;
-            order: 2;
+            flex: 0 0 auto;
         }
         
         .lang-btn {
@@ -160,7 +174,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            margin-left: auto;
+            flex: 0 0 auto;
         }
 
         .hero {
@@ -323,11 +337,71 @@
         .contact-form::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 30px 30px 0 0; }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.8); font-weight: 600; font-size: 0.95rem; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 15px 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 15px; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1rem; transition: all 0.3s ease; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 20px rgba(255, 107, 53, 0.2); }
+        
+        /* Fixed input and select styling */
+        .form-group input, .form-group textarea, .form-group select { 
+            width: 100%; 
+            padding: 15px 20px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 15px; 
+            color: #fff; 
+            font-family: 'Rajdhani', sans-serif; 
+            font-size: 1rem; 
+            transition: all 0.3s ease; 
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        /* Custom select styling */
+        .form-group select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff6b35' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 12px;
+            padding-right: 45px;
+        }
+        
+        /* Fix dropdown options styling */
+        .form-group select option {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 10px;
+            border: none;
+        }
+        
+        .form-group select option:hover {
+            background: var(--primary);
+        }
+        
+        .form-group select:focus { 
+            outline: none; 
+            border-color: var(--primary); 
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2); 
+        }
         .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
         .form-group textarea { min-height: 120px; resize: vertical; }
-        .submit-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary), #ff5500); border: none; border-radius: 15px; color: #fff; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3); position: relative; overflow: hidden; }
+        
+        .submit-btn { 
+            width: 100%; 
+            padding: 18px; 
+            background: linear-gradient(135deg, var(--primary), #ff5500); 
+            border: none; 
+            border-radius: 15px; 
+            color: #fff; 
+            font-family: 'Rajdhani', sans-serif; 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3); 
+            position: relative; 
+            overflow: hidden; 
+        }
         .submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s ease; }
         .submit-btn:hover::before { left: 100%; }
         .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5); }
@@ -379,7 +453,19 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 968px) {
-            .nav-links { display: none; }
+            .nav-links { 
+                display: none; 
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                transform: none;
+            }
+            .nav-links.active { display: flex; }
             .mobile-menu-btn { display: block; }
             .hero-stats { gap: 40px; }
             .rules-grid { grid-template-columns: 1fr; }
@@ -415,14 +501,19 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
+            <!-- Logo on left -->
             <a href="#" class="logo"><i class="fas fa-fire"></i>FLORIA RP</a>
-            <ul class="nav-links">
+            
+            <!-- Nav links in center -->
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="lang-nav-home">Home</a></li>
                 <li><a href="#rules" class="lang-nav-rules">Rules</a></li>
                 <li><a href="#discord" class="lang-nav-discord">Discord</a></li>
                 <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
                 <li><a href="#faq" class="lang-nav-faq">FAQ</a></li>
             </ul>
+            
+            <!-- Language flags on right -->
             <div class="nav-right">
                 <div class="lang-switcher">
                     <button class="lang-btn active" onclick="changeLanguage('ar')" title="العربية">
@@ -438,7 +529,7 @@
                         <img src="https://flagcdn.com/w80/es.png" alt="Spanish">
                     </button>
                 </div>
-                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </nav>
@@ -578,8 +669,7 @@
             <p class="lang-contact-subtitle">Need help? Have a question? Send us a message and we'll get back to you as soon as possible.</p>
         </div>
         <div class="contact-container fade-in">
-            <iframe name="formSubmitFrame" id="formSubmitFrame" style="display:none;"></iframe>
-            <form class="contact-form" id="contactForm" action="https://formsubmit.co/ouail24belkhir@gmail.com" method="POST" target="formSubmitFrame">
+            <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/ouail24belkhir@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="Floria RP - New Support Message">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
@@ -1086,6 +1176,11 @@
             });
         }
 
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) navbar.classList.add('scrolled');
@@ -1167,24 +1262,44 @@
 
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
-        const formSubmitFrame = document.getElementById('formSubmitFrame');
         const successOverlay = document.getElementById('successOverlay');
 
         contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             const sendingText = currentLang === 'fr' ? 'Envoi...' : currentLang === 'es' ? 'Enviando...' : 'Sending...';
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + sendingText;
             submitBtn.disabled = true;
-            formSubmitFrame.onload = function() {
-                successOverlay.classList.add('show');
-                contactForm.reset();
+            
+            // Use fetch for AJAX submission
+            const formData = new FormData(contactForm);
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    successOverlay.classList.add('show');
+                    contactForm.reset();
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + translations[currentLang]['form-send'];
+                    submitBtn.disabled = false;
+                    setTimeout(() => {
+                        successOverlay.classList.remove('show');
+                        window.location.href = '#home';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 4000);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error sending message. Please try again.');
                 submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + translations[currentLang]['form-send'];
                 submitBtn.disabled = false;
-                setTimeout(() => {
-                    successOverlay.classList.remove('show');
-                    window.location.href = '#home';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 4000);
-            };
+            });
         });
     </script>
 </body>
