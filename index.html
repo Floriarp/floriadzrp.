@@ -82,7 +82,6 @@
             position: relative;
         }
 
-        /* Logo on left - fixed width */
         .logo {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
@@ -98,7 +97,6 @@
         }
         .logo i { font-size: 2rem; -webkit-text-fill-color: var(--primary); }
 
-        /* Nav links in center */
         .nav-links { 
             display: flex; 
             gap: 40px; 
@@ -134,7 +132,6 @@
 
         .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-        /* Language Switcher on right */
         .lang-switcher {
             display: flex;
             gap: 10px;
@@ -338,7 +335,6 @@
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.8); font-weight: 600; font-size: 0.95rem; }
         
-        /* Fixed input and select styling */
         .form-group input, .form-group textarea, .form-group select { 
             width: 100%; 
             padding: 15px 20px; 
@@ -354,7 +350,6 @@
             -moz-appearance: none;
         }
         
-        /* Custom select styling */
         .form-group select {
             cursor: pointer;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff6b35' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
@@ -364,16 +359,11 @@
             padding-right: 45px;
         }
         
-        /* Fix dropdown options styling */
         .form-group select option {
             background: #1a1a1a;
             color: #fff;
             padding: 10px;
             border: none;
-        }
-        
-        .form-group select option:hover {
-            background: var(--primary);
         }
         
         .form-group select:focus { 
@@ -501,10 +491,8 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <!-- Logo on left -->
             <a href="#" class="logo"><i class="fas fa-fire"></i>FLORIA RP</a>
             
-            <!-- Nav links in center -->
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="lang-nav-home">Home</a></li>
                 <li><a href="#rules" class="lang-nav-rules">Rules</a></li>
@@ -513,7 +501,6 @@
                 <li><a href="#faq" class="lang-nav-faq">FAQ</a></li>
             </ul>
             
-            <!-- Language flags on right -->
             <div class="nav-right">
                 <div class="lang-switcher">
                     <button class="lang-btn active" onclick="changeLanguage('ar')" title="العربية">
@@ -669,18 +656,15 @@
             <p class="lang-contact-subtitle">Need help? Have a question? Send us a message and we'll get back to you as soon as possible.</p>
         </div>
         <div class="contact-container fade-in">
-            <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/ouail24belkhir@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Floria RP - New Support Message">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
+            <!-- Simplified Form - Discord Webhook Only -->
+            <form class="contact-form" id="contactForm">
+                <!-- Discord Username (Required) -->
                 <div class="form-group">
-                    <label for="name"><i class="fas fa-user"></i> <span class="lang-form-name">Your Name</span></label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    <label for="discordUser"><i class="fab fa-discord"></i> Discord Username</label>
+                    <input type="text" id="discordUser" name="discordUser" placeholder="username#1234" required>
                 </div>
-                <div class="form-group">
-                    <label for="email"><i class="fas fa-envelope"></i> <span class="lang-form-email">Your Email</span></label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                </div>
+                
+                <!-- Subject -->
                 <div class="form-group">
                     <label for="subject"><i class="fas fa-tag"></i> <span class="lang-form-subject">Subject</span></label>
                     <select id="subject" name="subject" required>
@@ -693,18 +677,16 @@
                         <option value="Other" class="lang-form-other">Other</option>
                     </select>
                 </div>
+                
+                <!-- Message -->
                 <div class="form-group">
                     <label for="message"><i class="fas fa-comment-alt"></i> <span class="lang-form-message">Message</span></label>
                     <textarea id="message" name="message" placeholder="Describe your issue or question in detail..." required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="discord"><i class="fab fa-discord"></i> <span class="lang-form-discord">Discord Username (Optional)</span></label>
-                    <input type="text" id="discord" name="discord" placeholder="Example: username#1234">
-                </div>
+                
                 <button type="submit" class="submit-btn" id="submitBtn"><i class="fas fa-paper-plane"></i> <span class="lang-form-send">Send Message</span></button>
             </form>
             <div class="contact-alt fade-in">
-                <a href="mailto:ouail24belkhir@gmail.com" class="contact-method"><i class="fas fa-envelope"></i><span>ouail24belkhir@gmail.com</span></a>
                 <a href="https://discord.gg/VJbdeUBbj" target="_blank" class="contact-method"><i class="fab fa-discord"></i><span class="lang-support-discord">Discord Support</span></a>
             </div>
         </div>
@@ -757,7 +739,10 @@
     </footer>
 
     <script>
-        // Translations - Arabic is the original mixed content
+        // Discord Webhook Configuration
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1550940819333320835/VFmM2ymzI2u-35hoqykHRY1NyVwBFNYVBfi6HZR3VJivwT3-bNWHD50H-hl1jVppBdbu';
+
+        // Translations
         const translations = {
             ar: {
                 "nav-home": "Home",
@@ -817,8 +802,6 @@
                 "contact-tag": "Get In Touch",
                 "contact-title": "Contact Support",
                 "contact-subtitle": "Need help? Have a question? Send us a message and we'll get back to you as soon as possible.",
-                "form-name": "Your Name",
-                "form-email": "Your Email",
                 "form-subject": "Subject",
                 "form-select": "Select a topic",
                 "form-ban": "Ban Appeal",
@@ -828,7 +811,6 @@
                 "form-donate": "Donation Issue",
                 "form-other": "Other",
                 "form-message": "Message",
-                "form-discord": "Discord Username (Optional)",
                 "form-send": "Send Message",
                 "support-discord": "Discord Support",
                 "faq-tag": "Questions",
@@ -910,8 +892,6 @@
                 "contact-tag": "Get In Touch",
                 "contact-title": "Contact Support",
                 "contact-subtitle": "Need help? Have a question? Send us a message and we'll get back to you as soon as possible.",
-                "form-name": "Your Name",
-                "form-email": "Your Email",
                 "form-subject": "Subject",
                 "form-select": "Select a topic",
                 "form-ban": "Ban Appeal",
@@ -921,7 +901,6 @@
                 "form-donate": "Donation Issue",
                 "form-other": "Other",
                 "form-message": "Message",
-                "form-discord": "Discord Username (Optional)",
                 "form-send": "Send Message",
                 "support-discord": "Discord Support",
                 "faq-tag": "Questions",
@@ -1003,8 +982,6 @@
                 "contact-tag": "Contactez-Nous",
                 "contact-title": "Support Contact",
                 "contact-subtitle": "Besoin d'aide? Une question? Envoyez-nous un message et nous vous répondrons dès que possible.",
-                "form-name": "Votre Nom",
-                "form-email": "Votre Email",
                 "form-subject": "Sujet",
                 "form-select": "Sélectionnez un sujet",
                 "form-ban": "Appel de Ban",
@@ -1014,7 +991,6 @@
                 "form-donate": "Problème de Don",
                 "form-other": "Autre",
                 "form-message": "Message",
-                "form-discord": "Pseudo Discord (Optionnel)",
                 "form-send": "Envoyer le Message",
                 "support-discord": "Support Discord",
                 "faq-tag": "Questions",
@@ -1096,8 +1072,6 @@
                 "contact-tag": "Contáctanos",
                 "contact-title": "Soporte de Contacto",
                 "contact-subtitle": "¿Necesitas ayuda? ¿Tienes una pregunta? Envíanos un mensaje y te responderemos lo antes posible.",
-                "form-name": "Tu Nombre",
-                "form-email": "Tu Email",
                 "form-subject": "Asunto",
                 "form-select": "Selecciona un tema",
                 "form-ban": "Apelar Ban",
@@ -1107,7 +1081,6 @@
                 "form-donate": "Problema de Donación",
                 "form-other": "Otro",
                 "form-message": "Mensaje",
-                "form-discord": "Usuario Discord (Opcional)",
                 "form-send": "Enviar Mensaje",
                 "support-discord": "Soporte Discord",
                 "faq-tag": "Preguntas",
@@ -1138,14 +1111,11 @@
         function changeLanguage(lang) {
             currentLang = lang;
             
-            // Update active button
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
             
-            // Keep LTR always (no direction change)
             document.documentElement.lang = lang;
             
-            // Update all elements with translation
             const elements = document.querySelectorAll('[class^="lang-"]');
             elements.forEach(el => {
                 const classes = el.className.split(' ');
@@ -1163,7 +1133,6 @@
                 });
             });
             
-            // Update select options
             const options = document.querySelectorAll('#subject option');
             options.forEach(opt => {
                 const cls = opt.className;
@@ -1260,44 +1229,98 @@
             });
         });
 
+        // Discord Webhook handling - Fixed and Improved
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successOverlay = document.getElementById('successOverlay');
 
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const sendingText = currentLang === 'fr' ? 'Envoi...' : currentLang === 'es' ? 'Enviando...' : 'Sending...';
+            const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + sendingText;
             submitBtn.disabled = true;
+
+            // Get form values - FIXED: using correct IDs
+            const discordInput = document.getElementById('discordUser');
+            const subjectInput = document.getElementById('subject');
+            const messageInput = document.getElementById('message');
             
-            // Use fetch for AJAX submission
-            const formData = new FormData(contactForm);
-            fetch(contactForm.action, {
+            const discord = discordInput ? discordInput.value.trim() : '';
+            const subject = subjectInput ? subjectInput.value : '';
+            const message = messageInput ? messageInput.value.trim() : '';
+
+            // Validate
+            if (!discord || !subject || !message) {
+                alert('Please fill in all fields');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            // Create improved Discord embed with better formatting
+            const payload = {
+                content: "@everyone 🔔 New support ticket received!",
+                embeds: [{
+                    title: `📋 ${subject}`,
+                    description: message,
+                    color: 0xff6b35, // Orange color matching the theme
+                    fields: [
+                        {
+                            name: "👤 Discord User",
+                            value: discord,
+                            inline: true
+                        },
+                        {
+                            name: "📅 Time",
+                            value: new Date().toLocaleString(),
+                            inline: true
+                        }
+                    ],
+                    footer: {
+                        text: "Floria RP Support System",
+                        icon_url: "https://cdn.discordapp.com/attachments/1541255382838804494/1542089519996731433/logosssss.webp"
+                    },
+                    timestamp: new Date().toISOString(),
+                    thumbnail: {
+                        url: "https://cdn.discordapp.com/attachments/1541255382838804494/1542089519996731433/logosssss.webp"
+                    }
+                }]
+            };
+
+            // Send to Discord webhook
+            fetch(DISCORD_WEBHOOK_URL, {
                 method: 'POST',
-                body: formData,
                 headers: {
-                    'Accept': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
             })
             .then(response => {
                 if (response.ok) {
+                    // Show success overlay
                     successOverlay.classList.add('show');
                     contactForm.reset();
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + translations[currentLang]['form-send'];
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
+                    
+                    // Redirect after 4 seconds
                     setTimeout(() => {
                         successOverlay.classList.remove('show');
                         window.location.href = '#home';
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }, 4000);
                 } else {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Failed to send');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error sending message. Please try again.');
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + translations[currentLang]['form-send'];
+                alert('Error sending message. Please try again or contact us on Discord.');
+                submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
         });
